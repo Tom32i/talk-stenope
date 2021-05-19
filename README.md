@@ -1,11 +1,11 @@
 # Talk: Génération de site statiques
 
-> La generation de sites statiques est un atout efficace et complémentaire du dévelopement web moderne.
+> La génération de sites statiques est un atout efficace et complémentaire du développement web moderne.
 >
 > Il existe de nombreux générateurs open-source, mais aucun n'a pu répondre complétement à nos besoins chez élao.
 >
 > - Qu'est-ce que nous attendons de ces outils ?
-> - Quelles sont leur limites ?
+> - Quelles sont leurs limites ?
 > - Pourrait-on faire mieux ?
 >
 > Laissez-moi vous présenter : Stenope ! L'outils de génération de site statique pour Symfony. ✨
