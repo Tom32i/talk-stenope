@@ -1,0 +1,74 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Stenope</title><script defer="defer" src="talk.js"></script></head><body><div class="reveal"><div class="slides"><section><h2>Génération<br/>de site statiques</h2></section><section><section><h2>L'interet</h2><ul><li class="fragment">Git flow</li><li class="fragment">Rapide et sûr à servir</li><li class="fragment">Automatisable</li></ul></section><section><h3>On en a testé beaucoup ...</h3></section><section><h2>Les limites</h2><ul><li class="fragment">Format imposé</li><li class="fragment">Boite noire</li><li class="fragment">Bricolage</li></ul></section><section><h3>On a fait le notre !</h3></section><section><h2>Encore un ?</h2></section><section><h3>Oui mais ...</h3><ol><li class="fragment">N'impose rien</li><li class="fragment">Tourne dans Symfony</li><li class="fragment">Ouvert</li></ol></section></section><section><section><h1 class="talk-title"><small>Dites bonjour à</small> Stenope <small>&nbsp;</small></h1></section><section><pre><code data-trim data-noescape class="language-txt">
+                            composer require stenope/stenope
+                        </code></pre></section><section><pre><code data-trim data-noescape class="language-txt">
+                            bin/console -e prod stenope:build ./static
+                        </code></pre></section><section><img src="assets/img/cli.png" class="plain"></section><section><pre><code data-trim data-noescape class="language-txt">
+                            └─ static/
+                               ├─ index.html
+                               ├─ blog/
+                               │  ├─ index.html
+                               │  ├─ un-super-article/
+                               │  │  └─ index.html
+                               │  └─ un-autre-article/
+                               │     └─ index.html
+                               └─ contact/
+                                  └─ index.html
+                        </code></pre></section></section><section><section><h2>Comment ça marche ?</h2></section><section><h3>🔍 Scan ton app</h3></section><section><h3>📦 Build statique</h3></section><section><h3>🧲 Récupération du contenu</h3></section><section><h3>⚗️ Hydratation du model</h3></section><section><h3>⚙️ Points d'entrée</h3></section></section><section><section><code class="filename">src/Model/Article.php</code><pre><code data-trim data-noescape class="language-php">
+namespace App\Model;
+
+class Article {
+    public string $slug;
+    public string $title;
+    public string $content;
+    public \DateTimeInterface $publication;
+}
+                        </code></pre></section><section><code class="filename small">content/articles/top-10-jeux-video-indé.md</code><pre><code data-trim data-noescape class="language-markdown small">
+---
+title: "Mon top 10 des jeux video indépendants"
+---
+
+## Jeux naratifs
+- Firewatch
+- Stories Untold
+- Inside
+- Kentucky Route Zero
+- The vanishing of Ethan Carter
+- The witness
+- Journey
+- What Remains of Edith Finch
+- Return of the Obra Dinn
+- Subnautica
+                        </code></pre></section><section><code class="filename">config/packages/stenope.yaml</code><pre><code data-trim data-noescape class="language-yaml">
+stenope:
+  providers:
+        local_articles:
+            type: 'files'
+            class: 'App\Model\Article'
+            path: '%kernel.project_dir%/content/articles'
+                        </code></pre></section><section><code class="filename small">src/Controller/BlogController</code><pre><code data-trim data-noescape class="language-php small">
+/**
+ * @Route("/", name="blog")
+ */
+public function index(ContentManager $manager)
+{
+    $articles = $manager->getContents(Article::class);
+
+    return $this->render(
+        'blog/index.html.twig',
+        ['articles' => $articles]
+    );
+}
+                        </code></pre></section><section><code class="filename small">src/Controller/BlogController</code><pre><code data-trim data-noescape class="language-php small">
+/**
+ * @Route("/{slug}", name="article")
+ */
+public function article(string $slug)
+{
+    $article = $this->manager->getContent(Article::class, $slug);
+
+    return $this->render(
+        'blog/article.html.twig',
+        ['article' => $article]
+    );
+}
+                        </code></pre></section></section><section><section><h2>Pas un simple générateur de site statique</h2></section><section><h3>Déjà compatible avec ton projet</h3></section><section><h3>Multi-sources, multi-format</h3></section><section><h3>S'adapte à ton format</h3></section><section><h3>S'intègre dans Twig<h3></h3></h3></section><section><h3>Déveloper tes propres features</h3></section><section><h3>Features optionelles<h3></h3></h3></section></section><section><h3 class="fragment wrong strike">Un générateur de site statique</h3><h3 class="correct">Un outil de<br>génération de site statique<br>pour Symfony</h3></section><section><h1>Stenope</h1><div><code class="shell">composer require <a href="https://packagist.org/packages/stenope/stenope">stenope/stenope</a></code><p><svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> <a href="https://github.com/StenopePHP/Stenope">StenopePHP/Stenope</a></p></div></section></div></div></body></html>
