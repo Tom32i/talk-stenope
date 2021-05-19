@@ -1,124 +1,8 @@
-<!doctype html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <title>Stenope</title>
-
-        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reset.css">
-        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css">
-        <link rel="stylesheet" href="./theme.css" id="theme">
-
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="./node_modules/reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
-
-        <style type="text/css">
-            .reveal .slides section .wrong {
-                transition: all 100ms linear;
-            }
-
-            .reveal .slides section .correct {
-                opacity: 0;
-                height: 0;
-                margin: 0;
-                transition: all 100ms linear;
-            }
-
-            .reveal .slides section .wrong.visible {
-                opacity: 0.5;
-                margin-top: -1.2em;
-            }
-
-            .reveal .slides section .wrong.visible + .correct {
-                opacity: 1;
-                height: auto;
-            }
-
-            .reveal .slides section .shell {
-                color: gray;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-                    <h2>Génération<br/>de site statiques</h2>
-                </section>
-                <section>
-                    <section>
-                        <h2>L'interet</h2>
-                        <ul>
-                            <li class="fragment">Git flow</li>
-                            <!-- Modification du contenu via des PR, Markdown -->
-                            <li class="fragment">Rapide et sûr à servir</li>
-                            <!-- Infra -->
-                            <li class="fragment">Automatisable</li>
-                            <!-- Github -->
-                            <!-- Conclusion : Pour certains usage très bien -->
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>On en a testé beaucoup ...</h3>
-                        <!-- Hugo, Cecil, Couscous -->
-                    </section>
-                    <section>
-                        <h2>Les limites</h2>
-                        <ul>
-                            <li class="fragment">Format imposé</li>
-                            <!-- Nom du dossier, arborescence -->
-                            <li class="fragment">Boite noire</li>
-                            <!-- Je ne fait pas de Go -->
-                            <li class="fragment">Bricolage</li>
-                            <!-- Contourner les limites en JS ou post build -->
-                        </ul>
-                    </section>
-                    <section>
-                        <h3>On a fait le notre !</h3>
-                        <!-- Oui, je sais ce que vousvous dites ... -->
-                    </section>
-                    <section>
-                        <h2>Encore un ?</h2>
-                    </section>
-                    <section>
-                        <h3>Oui mais ...</h3>
-                        <ol>
-                            <li class="fragment">N'impose rien</li>
-                            <!-- format, contenu, structure de dossier-->
-                            <li class="fragment">Tourne dans Symfony</li>
-                            <!-- environement qu'on maitrise, language qu'on maitrise -->
-                            <li class="fragment">Ouvert</li>
-                            <!-- On doit pouvoir developer ce qu'on veut avec-->
-                        </ol>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h1 class="talk-title">
-                            <small>Dites bonjour à</small>
-                            Stenope
-                            <small>&nbsp;</small>
-                        </h1>
-                    </section>
-                    <section>
-                        <!-- Installation -->
-                        <pre><code data-trim data-noescape class="language-txt">
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Stenope</title><script defer="defer" src="talk.js"></script></head><body><div class="reveal"><div class="slides"><section><h2>Génération<br/>de site statiques</h2></section><section><section><h2>L'interet</h2><ul><li class="fragment">Git flow</li><li class="fragment">Rapide et sûr à servir</li><li class="fragment">Automatisable</li></ul></section><section><h3>On en a testé beaucoup ...</h3></section><section><h2>Les limites</h2><ul><li class="fragment">Format imposé</li><li class="fragment">Boite noire</li><li class="fragment">Bricolage</li></ul></section><section><h3>On a fait le notre !</h3></section><section><h2>Encore un ?</h2></section><section><h3>Oui mais ...</h3><ol><li class="fragment">N'impose rien</li><li class="fragment">Tourne dans Symfony</li><li class="fragment">Ouvert</li></ol></section></section><section><section><h1 class="talk-title"><small>Dites bonjour à</small> Stenope <small>&nbsp;</small></h1></section><section><pre><code data-trim data-noescape class="language-txt">
                             composer require stenope/stenope
-                        </code></pre>
-                    </section>
-                    <section>
-                        <!-- Utilisation -->
-                        <pre><code data-trim data-noescape class="language-txt">
+                        </code></pre></section><section><pre><code data-trim data-noescape class="language-txt">
                             bin/console -e prod stenope:build ./static
-                        </code></pre>
-                    </section>
-                    <section>
-                        <img src="img/cli.png" class="plain">
-                    </section>
-                    <section>
-                        <!-- Resultat -->
-                        <pre><code data-trim data-noescape class="language-txt">
+                        </code></pre></section><section><img src="assets/img/cli.png" class="plain"></section><section><pre><code data-trim data-noescape class="language-txt">
                             └─ static/
                                ├─ index.html
                                ├─ blog/
@@ -129,43 +13,7 @@
                                │     └─ index.html
                                └─ contact/
                                   └─ index.html
-                        </code></pre>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <!-- Pas vraiment un générateur de site statique, plutot un outils pour en générer-->
-                        <h2>Comment ça marche ?</h2>
-                    </section>
-                    <section>
-                        <h3>🔍 Scan ton app</h3>
-                        <!-- Parcours les routes, call les unes après les autre -->
-                        <!-- Parse les liens comme un robot d'indexation -->
-                    </section>
-                    <section>
-                        <h3>📦 Build statique</h3>
-                        <!-- Dump en HTML -->
-                    </section>
-                    <section>
-                        <h3>🧲 Récupération du contenu</h3>
-                        <!-- Fournit des outils de lecture et de pasing du contenu -->
-                        <!-- Fichiers Markdown, html, json, yaml, ... basé sur Symnfony-->
-                        <!-- Fichiers distants-->
-                    </section>
-                    <section>
-                        <h3>⚗️ Hydratation du model</h3>
-                        <!-- Hydratation en DTO PHP comme le fait un ORM -->
-                        <!-- Utilisation dans twig, ect. -->
-                    </section>
-                    <section>
-                        <h3>⚙️ Points d'entrée</h3>
-                        <!-- Processors, interfaces, ect -->
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <code class="filename">src/Model/Article.php</code>
-                        <pre><code data-trim data-noescape class="language-php">
+                        </code></pre></section></section><section><section><h2>Comment ça marche ?</h2></section><section><h3>🔍 Scan ton app</h3></section><section><h3>📦 Build statique</h3></section><section><h3>🧲 Récupération du contenu</h3></section><section><h3>⚗️ Hydratation du model</h3></section><section><h3>⚙️ Points d'entrée</h3></section></section><section><section><code class="filename">src/Model/Article.php</code><pre><code data-trim data-noescape class="language-php">
 namespace App\Model;
 
 class Article {
@@ -174,11 +22,7 @@ class Article {
     public string $content;
     public \DateTimeInterface $publication;
 }
-                        </code></pre>
-                    </section>
-                    <section>
-                        <code class="filename small">content/articles/top-10-jeux-video-indé.md</code>
-                        <pre><code data-trim data-noescape class="language-markdown small">
+                        </code></pre></section><section><code class="filename small">content/articles/top-10-jeux-video-indé.md</code><pre><code data-trim data-noescape class="language-markdown small">
 ---
 title: "Mon top 10 des jeux video indépendants"
 ---
@@ -194,22 +38,14 @@ title: "Mon top 10 des jeux video indépendants"
 - What Remains of Edith Finch
 - Return of the Obra Dinn
 - Subnautica
-                        </code></pre>
-                    </section>
-                    <section>
-                        <code class="filename">config/packages/stenope.yaml</code>
-                        <pre><code data-trim data-noescape class="language-yaml">
+                        </code></pre></section><section><code class="filename">config/packages/stenope.yaml</code><pre><code data-trim data-noescape class="language-yaml">
 stenope:
   providers:
         local_articles:
             type: 'files'
             class: 'App\Model\Article'
             path: '%kernel.project_dir%/content/articles'
-                        </code></pre>
-                    </section>
-                    <section>
-                        <code class="filename small">src/Controller/BlogController</code>
-                        <pre><code data-trim data-noescape class="language-php small">
+                        </code></pre></section><section><code class="filename small">src/Controller/BlogController</code><pre><code data-trim data-noescape class="language-php small">
 /**
  * @Route("/", name="blog")
  */
@@ -222,11 +58,7 @@ public function index(ContentManager $manager)
         ['articles' => $articles]
     );
 }
-                        </code></pre>
-                    </section>
-                    <section>
-                        <code class="filename small">src/Controller/BlogController</code>
-                        <pre><code data-trim data-noescape class="language-php small">
+                        </code></pre></section><section><code class="filename small">src/Controller/BlogController</code><pre><code data-trim data-noescape class="language-php small">
 /**
  * @Route("/{slug}", name="article")
  */
@@ -239,69 +71,4 @@ public function article(string $slug)
         ['article' => $article]
     );
 }
-                        </code></pre>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h2>Pas un simple générateur de site statique</h2>
-                    </section>
-                    <section>
-                        <h3>Déjà compatible avec ton projet</h3>
-                        <!-- effet demo -->
-                    </section>
-                    <section>
-                        <h3>Multi-sources, multi-format</h3>
-                        <!-- Load wordpress API en plus du file system -->
-                    </section>
-                    <section>
-                        <h3>S'adapte à ton format</h3>
-                        <!-- Table des matières, gravatar, ... -->
-                    </section>
-                    <section>
-                        <h3>S'intègre dans Twig<h3>
-                    </section>
-                    <section>
-                        <h3>Déveloper tes propres features</h3>
-                        <!-- Table des matières, gravatar, ... -->
-                    </section>
-                    <section>
-                        <h3>Features optionelles<h3>
-                        <!-- Coloration Synthaxique -->
-                        <!-- Table des matières -->
-                        <!-- Sitemap -->
-                        <!-- Asset Symfony -->
-                        <!-- Encres html -->
-                        <!-- Liens entre les contenus -->
-                    </section>
-                </section>
-                <section>
-                    <h3 class="fragment wrong strike">Un générateur de site statique</h3>
-                    <h3 class="correct">Un outil de<br>génération de site statique<br>pour Symfony</h3>
-                </section>
-                <section>
-                    <h1>Stenope</h1>
-                    <div>
-                        <code class="shell">composer require  <a href="https://packagist.org/packages/stenope/stenope">stenope/stenope</a></code>
-                        <p>
-                            <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                            <a href="https://github.com/StenopePHP/Stenope">StenopePHP/Stenope</a>
-                        </p>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <script src="./node_modules/reveal.js/dist/reveal.js"></script>
-        <script src="./node_modules/reveal.js/plugin/markdown/markdown.js"></script>
-        <script src="./node_modules/reveal.js/plugin/highlight/highlight.js"></script>
-
-        <script>
-            Reveal.initialize({
-                hash: true,
-                // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [ RevealMarkdown, RevealHighlight ]
-            });
-        </script>
-    </body>
-</html>
+                        </code></pre></section></section><section><section><h2>Pas un simple générateur de site statique</h2></section><section><h3>Déjà compatible avec ton projet</h3></section><section><h3>Multi-sources, multi-format</h3></section><section><h3>S'adapte à ton format</h3></section><section><h3>S'intègre dans Twig<h3></h3></h3></section><section><h3>Déveloper tes propres features</h3></section><section><h3>Features optionelles<h3></h3></h3></section></section><section><h3 class="fragment wrong strike">Un générateur de site statique</h3><h3 class="correct">Un outil de<br>génération de site statique<br>pour Symfony</h3></section><section><h1>Stenope</h1><div><code class="shell">composer require <a href="https://packagist.org/packages/stenope/stenope">stenope/stenope</a></code><p><svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> <a href="https://github.com/StenopePHP/Stenope">StenopePHP/Stenope</a></p></div></section></div></div></body></html>
