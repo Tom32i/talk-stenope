@@ -1,7 +1,7 @@
 .SILENT:
 .PHONY: build
 
-default: install build
+default: install build serve
 
 ## Install dependencies
 install:
@@ -17,4 +17,4 @@ build:
 
 ## Serve
 serve:
-	php -S 0.0.0.0:8000 -t ./build
+	npx http-server ./build
