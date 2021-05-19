@@ -5,40 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <title>Stenope</title>
-
-        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reset.css">
-        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css">
-        <link rel="stylesheet" href="./theme.css" id="theme">
-
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="./node_modules/reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
-
-        <style type="text/css">
-            .reveal .slides section .wrong {
-                transition: all 100ms linear;
-            }
-
-            .reveal .slides section .correct {
-                opacity: 0;
-                height: 0;
-                margin: 0;
-                transition: all 100ms linear;
-            }
-
-            .reveal .slides section .wrong.visible {
-                opacity: 0.5;
-                margin-top: -1.2em;
-            }
-
-            .reveal .slides section .wrong.visible + .correct {
-                opacity: 1;
-                height: auto;
-            }
-
-            .reveal .slides section .shell {
-                color: gray;
-            }
-        </style>
     </head>
     <body>
         <div class="reveal">
@@ -114,7 +80,7 @@
                         </code></pre>
                     </section>
                     <section>
-                        <img src="img/cli.png" class="plain">
+                        <img src="assets/img/cli.png" class="plain">
                     </section>
                     <section>
                         <!-- Resultat -->
@@ -291,17 +257,5 @@ public function article(string $slug)
                 </section>
             </div>
         </div>
-
-        <script src="./node_modules/reveal.js/dist/reveal.js"></script>
-        <script src="./node_modules/reveal.js/plugin/markdown/markdown.js"></script>
-        <script src="./node_modules/reveal.js/plugin/highlight/highlight.js"></script>
-
-        <script>
-            Reveal.initialize({
-                hash: true,
-                // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [ RevealMarkdown, RevealHighlight ]
-            });
-        </script>
     </body>
 </html>

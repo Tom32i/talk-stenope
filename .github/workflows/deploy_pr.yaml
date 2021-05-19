@@ -44,6 +44,14 @@ jobs:
             npm install --color=always --no-progress
           echo "::endgroup::"
 
+      - name: 'Build'
+        run: |
+          echo "::group::build"
+            npx webpack --mode=production
+          echo "::endgroup::"
+        env:
+          WEBPACK_PUBLIC_PATH: /talk-stenope/build
+
       # https://github.com/marketplace/actions/deploy-to-github-pages
       - name: '🚀 Deploy'
         uses: JamesIves/github-pages-deploy-action@3.7.1
@@ -54,7 +62,7 @@ jobs:
             for commit ${{ github.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: . # The folder the action should deploy.
+          FOLDER: build # The folder the action should deploy.
           TARGET_FOLDER: pr/${{ github.event.number }} # The folder where the action should deploy on the deployment branch.
           CLEAN: true # Automatically remove deleted files from the deploy branch
 

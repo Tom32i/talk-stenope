@@ -1,0 +1,24 @@
+.reveal .slides section .wrong {
+    transition: all 100ms linear;
+}
+
+.reveal .slides section .correct {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    transition: all 100ms linear;
+}
+
+.reveal .slides section .wrong.visible {
+    opacity: 0.5;
+    margin-top: -1.2em;
+}
+
+.reveal .slides section .wrong.visible + .correct {
+    opacity: 1;
+    height: auto;
+}
+
+.reveal .slides section .shell {
+    color: gray;
+}
