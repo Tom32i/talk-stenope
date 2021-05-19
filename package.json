@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Presentation de Stenope",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tom32i/talk-stenope.git"
@@ -18,5 +15,16 @@
   "homepage": "https://github.com/Tom32i/talk-stenope#readme",
   "dependencies": {
     "reveal.js": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
   }
 }
