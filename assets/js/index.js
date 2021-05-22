@@ -9,9 +9,6 @@ import '../../node_modules/reveal.js/plugin/highlight/monokai.css';
 import '../css/theme.css';
 import '../css/style.css';
 
-// Images
-import '../img/cli.png';
-
 window.addEventListener('load', () => {
     Reveal.initialize({
         hash: true,
