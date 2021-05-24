@@ -9,8 +9,8 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>Génération<br/>de site statiques</h2>
-                    <!-- presnetation -->
+                    <h2>Génération<br/>de sites statiques</h2>
+                    <!-- Présentation -->
                 </section>
                 <section>
                     <section>
@@ -19,11 +19,11 @@
                         <!-- Utile pour tout ce qui est en lecture seule : Documentation, blog, site vitrine-->
                     </section>
                     <section>
-                        <h2>L'interet</h2>
+                        <h2>L'intérêt</h2>
                         <ul class="list-emoji">
                             <li class="fragment">🌱 Économe</li>
                             <!-- Infra, scalabilité, webparf -->
-                            <li class="fragment">⚙️ Automatisatble</li>
+                            <li class="fragment">⚙️ Automatisable</li>
                             <!-- Github -->
                             <!-- Conclusion : Pour certains usage très bien -->
                         </ul>
@@ -72,6 +72,7 @@
                     <!-- Slide max et tom ?-->
                     <section>
                         <!-- Installation -->
+                        <h3>Bundle pour Symfony</h3>
                         <pre><code data-trim data-noescape class="language-txt">
                             composer require stenope/stenope
                         </code></pre>
@@ -116,8 +117,9 @@
                         <!-- Dump en HTML avec la technique du index -->
                     </section>
                     <section>
-                        <h3>🧲 Listing et récupération des contenus</h3>
-                        <!-- Fichiers locaux ou distants-->
+                        <h3>🧲 Récupération des contenus</h3>
+                        <!-- Fichiers locaux ou distants, on y reviendra-->
+                        <!-- Providers -->
                     </section>
                     <section>
                         <h3>📡 Décodage</h3>
@@ -189,6 +191,7 @@ stenope:
                     <section>
                         <code class="filename small">src/Controller/BlogController</code>
                         <pre><code data-trim data-noescape class="language-php small">
+use App\Model\Article;
 use Stenope\Bundle\ContentManager;
 
 class BlogController {
@@ -229,11 +232,12 @@ public function article(string $slug)
                 </section>
                 <section>
                     <section>
-                        <h2>Pas un simple générateur de site statique</h2>
+                        <h2>Ses forces</h2>
                     </section>
                     <section>
                         <h3>N'importe quelle source,<br>n'importe quel format</h3>
                         <!-- Load wordpress API en plus du file system -->
+                        <!-- Custom provider et decoders -->
                     </section>
                     <section>
                         <h3>Fournis les outils<br>mais n'impose rien<h3>
@@ -255,7 +259,7 @@ public function article(string $slug)
                 </section>
                 <section>
                     <h3 class="fragment wrong strike">Un générateur de site statique</h3>
-                    <h3 class="correct">Un outil pour la<br>génération de site statique<br>avec Symfony</h3>
+                    <h3 class="correct">Un outil pour la<br>génération de site statique<br>dans Symfony</h3>
                 </section>
                 <section>
                     <section>
